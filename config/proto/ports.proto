@@ -1,0 +1,75 @@
+syntax = "proto3";
+
+package sync;
+
+option go_package = "proto";
+
+import "google/protobuf/empty.proto";
+
+service SyncService {
+  rpc GetPort (RequestWithId) returns (PortResponse) {}
+  rpc GetPorts (google.protobuf.Empty) returns (PortsResponse) {}
+  rpc CreatePort (CreatePortRequest) returns (PortResponse) {}
+  rpc UpdatePort (UpdatePortRequest) returns (PortResponse) {}
+  rpc DeletePort (RequestWithId) returns (DeleteResponse) {}
+}
+
+message Port {
+    string title = 1;
+    string name = 2;
+    string city = 3;
+    string country = 4;
+    repeated string alias = 5;
+    repeated string regions = 6;
+    repeated string coordinates = 7;
+    string province = 8;
+    string timezone = 9;
+    repeated string unlocs = 10;
+    repeated string code = 11;
+}
+
+message RequestWithId {
+  int32 id = 1;
+}
+
+message CreatePortRequest {
+  string title = 1;
+  string name = 2;
+  string city = 3;
+  string country = 4;
+  repeated string alias = 5;
+  repeated string regions = 6;
+  repeated string coordinates = 7;
+  string province = 8;
+  string timezone = 9;
+  repeated string unlocs = 10;
+  repeated string code = 11;
+}
+
+message UpdatePortRequest {
+  string title = 1;
+  string name = 2;
+  string city = 3;
+  string country = 4;
+  repeated string alias = 5;
+  repeated string regions = 6;
+  repeated string coordinates = 7;
+  string province = 8;
+  string timezone = 9;
+  repeated string unlocs = 10;
+  repeated string code = 11;
+}
+
+message PortResponse {
+  int32 status = 1;
+  Port data = 2;
+}
+
+message PortsResponse {
+  int32 status = 1;
+  repeated Port data = 2;
+}
+
+message DeleteResponse {
+  int32 status = 1;
+}
